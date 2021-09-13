@@ -91,20 +91,36 @@ class _CheckOutPageState extends State<CheckOutPage> {
               },
             ),
           ),
-          Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Consumer<Price>(builder: (context, count, child) {
-                  return Text("${count.total}".toString());
-                }),
-              ),
-              RaisedButton(
-                onPressed: () {
-                  print('BUY');
-                },
-                child: Text('BUY NOW'),
-              )
+          Table(
+
+            children: [
+              TableRow(children: [
+                Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Consumer<Price>(builder: (context, count, child) {
+                        return Text("${count.total}".toString(),style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.redAccent,
+                        ),);
+                      }),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    RaisedButton(
+                      onPressed: () {
+                        print('BUY');
+                      },
+                      child: Text('BUY NOW'),
+                      color: Colors.redAccent,
+                    )
+                  ],
+                )
+              ]),
             ],
           ),
         ],
