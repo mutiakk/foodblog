@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodblog/ui/cart_page.dart';
 import 'package:foodblog/ui/desc_product.dart';
 import 'package:foodblog/object/object.dart';
-
 
 class ListFood extends StatelessWidget {
   //inisialisasi variabel
@@ -15,10 +15,13 @@ class ListFood extends StatelessWidget {
         leading: Icon(Icons.food_bank_outlined, color: Colors.red),
         actions: [
           IconButton(
-              icon: Icon(Icons.shopping_cart),
-              color: Colors.red,
+            icon: Icon(Icons.shopping_cart),
+            color: Colors.red,
             onPressed: () {
-                print('icon cart');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CheckOutPage()),
+              );
             },
           ),
           Padding(
@@ -28,7 +31,8 @@ class ListFood extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Container( //Harus container biar bisa ketemu child lagi
+        child: Container(
+          //Harus container biar bisa ketemu child lagi
           margin: EdgeInsets.all(5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +44,8 @@ class ListFood extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     final ObjectFood food = foodList[index];
-                    return Stack(// Membuat lapisan
+                    return Stack(
+                      // Membuat lapisan
                       children: [
                         Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 10, 20),
@@ -54,7 +59,8 @@ class ListFood extends StatelessWidget {
                                 fit: BoxFit.cover),
                           ),
                         ),
-                        Positioned(// memposisikan sebuah kotak
+                        Positioned(
+                          // memposisikan sebuah kotak
                           child: Container(
                             width: 40,
                             height: 40,
@@ -64,6 +70,19 @@ class ListFood extends StatelessWidget {
                                   bottomLeft: Radius.circular(10),
                                   topRight: Radius.circular(10)),
                             ),
+                              child: IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ProductDesc(
+                                        food: food,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                icon: Icon(Icons.add),
+                              ),
                           ),
                         ),
                       ],
@@ -82,39 +101,52 @@ class ListFood extends StatelessWidget {
                 itemCount: foodList.length,
                 itemBuilder: (context, index) {
                   final ObjectFood food = foodList[index];
-                  return InkWell( //buat ngedirect ke page
+                  return InkWell(
+                    //buat ngedirect ke page
                     onTap: () {
-                      Navigator.push(context,MaterialPageRoute(builder: (context){
-                      return ProductDesc(
-                      food:food,
-                      );
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return ProductDesc(
+                          food: food,
+                        );
                       }));
                     },
-                    child: ClipRRect( borderRadius: BorderRadius.circular(20), //ngasi clip gambar wadahmya gambar
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      //ngasi clip gambar wadahmya gambar
                       child: Card(
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Expanded(child:  Image.network(food.imageUrls)),
-                            Expanded(child: Padding(
-                              padding: EdgeInsets.all(5),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    food.fname, style: TextStyle(fontSize: 16),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(food.fprice.toString())
-                                ],
-                              ),
+                            Expanded(
+                                child: Image.network(
+                              food.imageUrls,
+                              width: 80,
+                              height: 150,
+                              fit: BoxFit.cover,
                             )),
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.all(5),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      food.fname,
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(food.fprice.toString()),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
-                      )
+                      ),
                     ),
                   );
                 },

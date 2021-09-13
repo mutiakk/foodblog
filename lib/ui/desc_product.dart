@@ -28,12 +28,6 @@ class ProductDesc extends StatelessWidget {
                   );
                 },
               ),
-              Padding(
-                padding: EdgeInsets.all(2),
-                child: Consumer<Price>(builder: (context, count, child) {
-                  return Text("${count.count}");
-                }),
-              ),
             ],
           )
         ],

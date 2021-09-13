@@ -31,10 +31,9 @@ List<ObjectFood> foodList = [
     id: 2,
     fname: 'Cuanki',
     fprice: 5000,
-    fphoto: 'image/bas.jpg',
+    fphoto: 'image/cuangki.jpg',
     fberat: '20',
-    imageUrls:
-        'https://cdn.idntimes.com/content-images/post/20210618/198629997-934416724009757-7887903785623892961-n-f6c0c5b7bd2982c39674da7e192c85f3_600x400.jpg',
+    imageUrls: 'https://sgp1.digitaloceanspaces.com/tz-mag-id/wp-content/uploads/2019/12/080812121313/1-2-Cuanki-Bandung-by-alejenes.jpg',
     qty: 1,
   ),
 ];
