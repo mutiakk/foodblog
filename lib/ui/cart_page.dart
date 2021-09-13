@@ -19,6 +19,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Checkout Item',style: TextStyle(color: Colors.black),),
         backgroundColor: Colors.transparent,
       ),
       body: Center(
@@ -72,8 +73,8 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                             },
                                             icon: Icon(Icons.remove),
                                           ),
-                                          Text(("${co.calculateTotal().toString()}")),
-                                          // Text("${co.item[i].qty}*${co.item[i].fprice}".toString())\
+                                          //Text(("${co.calculateTotal().toString()}")),
+                                          //Text("${co.item[i].qty}*${co.item[i].fprice}".toString())
 
                                         ],
                                       ),
